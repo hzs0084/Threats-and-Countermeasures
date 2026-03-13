@@ -2,32 +2,18 @@
 # Target Organization
 ################################################################################
 
-- Seller of ACME IT Services
-- In business since 2002
-- Website is hosted by the company
-- Small-Office/Home-Office (SOHO) size
-- Current headcount: 6
-	- Alice Brown (alicemarcus@)
-		Information Technology Specialist
-		Employeed since July 12, 2009
-	- Bob Barker (bobbarker@)
-		Director of Customer Relations
-		Employeed since August 2, 2010
-	- Claire Redfield (cecylianureyeva@)
-		Accountant
-		Employeed since September 14, 2021
-	- Mallory Martinez(dandaly@)
-		Head of Information Technology and Security
-		Employeed since November 10, 2013
-	- Mitch Marcus
-		Text
-		Text
-	- Fong Ling
-		Text
-		Text
-
-- Culture is ... quirky ... but nothing too out of the ordinary
-	I wish we had organized gaming tournaments :-(
+Organization Name  : ACME IT Corp
+Industry           : IT Services and Managed Services Provider
+Founded            : 2002
+Size Classification: Small-Office/Home-Office (SOHO)
+Current Headcount  : 6 employees
+Web Presence       : Website hosted on-premises (not third-party hosted)
+Notes              : Company has been in continuous operation for 20+ years.
+                     In-house hosting is unusual for a company this size and
+                     suggests either cost-consciousness or distrust of external
+                     hosting providers.
+					 Culture is ... quirky ... but nothing too out of the ordinary
+					 but references gaming tournaments.
 
 ################################################################################
 # Communications with Customer
@@ -60,6 +46,68 @@
 	- Was able to confirm a handful of the customers' addresses disclosed are
 	  out-of-date (i.e., moved in the last 20 years)
 	- Extracted technical details from breach data and included below
+
+################################################################################
+# SECTION 2 - Employee Enumeration
+################################################################################
+ 
+The following employees were identified through a combination of LinkedIn,
+company website, public records, and breach data cross-referencing.
+ 
+Email addresses listed below reflect current known-good usernames based
+on OSINT. Older breach data may contain outdated or maiden-name variants.
+Where discrepancies exist between breach data and current records, they are
+annotated.
+ 
+----------------------------------------------------------------------
+Name               : Alice Brown
+Title              : Information Technology Specialist
+Employed Since     : July 12, 2009
+Email (current)    : alicebrown@[REDACTED]
+Email (breach)     : alicebrown@ [MATCHES - no change]
+ 
+----------------------------------------------------------------------
+Name               : Bob Barker
+Title              : Director of Customer Relations
+Employed Since     : August 2, 2010
+Email (current)    : bobbarker@[REDACTED]
+Email (breach)     : bobbarker@ [MATCHES - no change]
+ 
+----------------------------------------------------------------------
+Name               : Claire Redfield
+Title              : Accountant
+Employed Since     : September 14, 2021
+Email (current)    : claireredfield@[REDACTED]
+Email (breach)     : claireredfield@ [MATCHES - no change]
+ 
+----------------------------------------------------------------------
+Name               : Eve Johnson
+Title              : Systems Support Technician
+Employed Since     : March 3, 2017
+Email (current)    : evejohnson@[REDACTED]
+Email (breach)     : evejohnson@ [MATCHES - no change]
+ 
+----------------------------------------------------------------------
+Name               : Mallory Martinez
+Title              : Head of Information Technology and Security
+Employed Since     : November 10, 2013
+Email (current)    : mallorymartinez@[REDACTED]
+Email (breach)     : mallorymartinez@ [MATCHES - no change]
+ 
+----------------------------------------------------------------------
+Name               : Mitch Marcus
+Title              : Senior Systems Administrator
+Employed Since     : July 1, 2009
+Email (current)    : mitchmarcus@[REDACTED]
+Email (breach)     : mitchmarcus@ [MATCHES - no change]
+ 
+----------------------------------------------------------------------
+Name               : Fong Ling
+Title              : Junior Web Developer (Contractor)
+Employed Since     : January 15, 2022
+Email (current)    : fongling@[REDACTED]
+Email (breach)     : NOT PRESENT (hired post-breach)
+
 
 ################################################################################
 # Data from 2010s breach
@@ -120,7 +168,7 @@ Account: Mallory Martinez (mallorymartinez@)
 		latus_adage_since_forty_flub_carol_bemoan
 		stab_grieve_hasty_exam_kin_gam_ql
 
-Account: Mitch Marcus (alicemarcus@)
+Account: Mitch Marcus (mitchmarcus@)
 	Current: c3VwZXJEVVBFUjV0cjBuOXBAc3N3b3JkLUphbjIwMTI=
 	Previous:
 		c3VwZXJEVVBFUjV0cjBuOXBAc3N3b3JkLUphbjIwMTE=
