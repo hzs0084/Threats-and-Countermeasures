@@ -1,0 +1,136 @@
+################################################################################
+# Target Organization
+################################################################################
+
+- Seller of ACME IT Services
+- In business since 2002
+- Website is hosted by the company
+- Small-Office/Home-Office (SOHO) size
+- Current headcount: 6
+	- Alice Brown (alicemarcus@)
+		Information Technology Specialist
+		Employeed since July 12, 2009
+	- Bob Barker (bobbarker@)
+		Director of Customer Relations
+		Employeed since August 2, 2010
+	- Claire Redfield (cecylianureyeva@)
+		Accountant
+		Employeed since September 14, 2021
+	- Mallory Martinez(dandaly@)
+		Head of Information Technology and Security
+		Employeed since November 10, 2013
+	- Mitch Marcus
+		Text
+		Text
+	- Fong Ling
+		Text
+		Text
+
+- Culture is ... quirky ... but nothing too out of the ordinary
+	I wish we had organized gaming tournaments :-(
+
+################################################################################
+# Communications with Customer
+################################################################################
+
+- Mallory Martinez requested pen-test of network on behalf of the customer
+	- Legal has confirmed that all standard agreements have been signed and
+	  submitted to allow us to move forward
+
+- Customer informed us of a known data breach in the early 2010s but explicitly
+  stated that "the situation has been handled and corrective-action taken"
+
+- Customer made a point of dicussing some of the corrective-actions they'd
+  taken but not all made sense during the interaction:
+	- Ban on Microsoft products (?due to distrust of Bill Gates?)
+	- Employees are banned from connecting mobile devices to corporate network
+	- Require all OS updates to be applied within 14 days of release
+	- Monthly password expiration with minimum character counts
+	- Manual password audits via a paper form submitted to IT when rotating
+	- Require pen-tests from external organization
+
+- Customer provided "Certificates of Testing" for previous 7 years but not the
+  reports themselves
+	- Interesting that they only say "performed" and not "passed" :-S
+
+- Located significant corporate and customer data available from 2010s breach 
+
+	- Located via a non-public, 3rd party, grey-market data vendor
+	- All customer credit card numbers are expired
+	- Was able to confirm a handful of the customers' addresses disclosed are
+	  out-of-date (i.e., moved in the last 20 years)
+	- Extracted technical details from breach data and included below
+
+################################################################################
+# Data from 2010s breach
+################################################################################
+
+Account: Alice Brown (alicebrown@)
+	Current: ->~B8u%r
+	Previous:
+		02{{,:Rx
+		~rZdjdmM
+		LJy[1'.v
+		&Y>HUKI/
+		37Gx^e*>
+		8[~_(pB$
+		z&>7k`E'
+		WJOz"TB%
+		^<![#yyr
+		H!e`J(z[
+		/`IbPxo\
+		9,@#<+G@
+		.CIW<RbB
+		,-Dci,o2
+
+Account: Bob Barker (bobbarker@)
+	Current: Bm*ms%:n}O0M*o
+	Previous:
+		=aIa,N*C$!E5.#
+		{Qwt[-cd(i^@|C
+		4[4s1FSy$%IR</
+		u%:N'h2A.X4iQI
+		\l$li}DISuwm9]
+
+Account: Claire Redfield (claireredfield@)
+	Current: mess_ze_null_tony
+	Previous:
+		cove_ballot_imp_jorge
+		mew_rap_bovine_as
+		jelly_rabat_filet_derby
+		dewy_hair_chin_a's
+		text_balm_maxim_qp
+		eureka_editor_we'd_pram
+
+Account: Eve Johnson (evejohnson@)
+	Current: smithy_hovel_86_vade
+	Previous:
+		lug_hum_jkl_jewett
+		uncle_venal_57th_kudo
+		ken_magog_fifo_style
+		putty_near_tout_omega
+		belle_cried_whim_sect
+		torus_meson_evans_efg
+		coil_head_ajax_arab
+		dyad_jazzy_media_zesty
+
+Account: Mallory Martinez (mallorymartinez@)
+	Current: sexy_87th_moral_wick_px_46th_dealt
+	Previous:
+		latus_adage_since_forty_flub_carol_bemoan
+		stab_grieve_hasty_exam_kin_gam_ql
+
+Account: Mitch Marcus (alicemarcus@)
+	Current: c3VwZXJEVVBFUjV0cjBuOXBAc3N3b3JkLUphbjIwMTI=
+	Previous:
+		c3VwZXJEVVBFUjV0cjBuOXBAc3N3b3JkLUphbjIwMTE=
+		c3VwZXJEVVBFUjV0cjBuOXBAc3N3b3JkLUphbjIwMTA=
+		c3VwZXJEVVBFUjV0cjBuOXBAc3N3b3JkLUp1bDIwMDk=
+
+Account: Fong Ling (fongling@)
+	Current: UQu-Ma~IbsP-
+	Previous:
+		None
+
+
+
