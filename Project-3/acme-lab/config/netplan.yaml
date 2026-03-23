@@ -1,0 +1,31 @@
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    enp0s3:
+      match:
+        macaddress: 08:00:27:69:9b:d0
+      set-name: enp0s3
+      dhcp4: true
+    enp0s8:
+      match:
+        macaddress: 08:00:27:6a:85:4c
+      set-name: enp0s8
+      dhcp4: false
+      addresses:
+        - 192.168.56.21/24
+
+
+## Another version to ensure only host network works
+
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    host-only-interface:
+      match:
+        name: enp0s[3-9]    # This ensures that no matter which adapter is selected, it will talk statically
+      dhcp4: false
+      set-name: enp-static
+      addresses:
+        - 192.168.56.21/24
