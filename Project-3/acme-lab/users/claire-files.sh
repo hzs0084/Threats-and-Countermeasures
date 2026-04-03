@@ -7,7 +7,7 @@ HOME_CLAIRE="/home/$USER_CLAIRE"
 echo "[+] Expanding Claire Redfield's workspace with high-detail accounting content..."
 
 # 1. Create Additional Directory Structure
-mkdir -p $HOME_CLAIRE/{Regulatory_Filings,Expense_Reports,Budget_Planning,Legacy_Ledgers,Audit_Prep,Personal_Records}
+mkdir -p $HOME_CLAIRE/{Invoices,Regulatory_Filings,Expense_Reports,Budget_Planning,Legacy_Ledgers,Audit_Prep,Personal_Records}
 
 # 2. Budget Planning (Connecting to other staff needs)
 cat << 'EOF' > $HOME_CLAIRE/Budget_Planning/FY2026_Hardware_Refresh_Final.md

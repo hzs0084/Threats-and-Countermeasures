@@ -7,7 +7,7 @@ HOME_FONG="/home/$USER_FONG"
 echo "[+] Expanding Fong Ling's workspace with high-detail web development content..."
 
 # 1. Create Additional Directory Structure
-mkdir -p $HOME_FONG/{CSS_Assets,Drafts/v1_Archive,Contractor_Admin,Communication,PHP_References,Deployment_Logs}
+mkdir -p $HOME_FONG/{Notes,CSS_Assets,Drafts/v1_Archive,Contractor_Admin,Communication,PHP_References,Deployment_Logs}
 
 # 2. Contractor Admin (Reflecting their status)
 cat << 'EOF' > $HOME_FONG/Contractor_Admin/Contract_Renewal_Note.txt

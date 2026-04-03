@@ -7,7 +7,7 @@ HOME_DIR="/home/$USER"
 echo "[+] Expanding Bob Barker's workspace with high-detail business content..."
 
 # 1. Create Additional Directory Structure
-mkdir -p $HOME_DIR/{Client_Correspondence,Marketing_Materials,Company_History,Internal_Memos,Event_Planning}
+mkdir -p $HOME_DIR/{Client_Correspondence,Drafts,Marketing_Materials,Company_History,Internal_Memos,Event_Planning}
 
 # 2. Company History & Milestone Content
 cat << 'EOF' > $HOME_DIR/Company_History/20th_Anniversary_Speech_Draft.txt

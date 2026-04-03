@@ -7,7 +7,7 @@ HOME_EVE="/home/$USER_EVE"
 echo "[+] Expanding Eve Johnson's workspace with high-detail technical support content..."
 
 # 1. Create Additional Directory Structure
-mkdir -p $HOME_EVE/{Network_Scans,Knowledge_Base,Ticket_History,Workstation_Images,Server_Room_Logs,Vendor_Downloads}
+mkdir -p $HOME_EVE/{Documentation,Monitoring_Logs,Personal_Folder,Network_Scans,Knowledge_Base,Ticket_History,Workstation_Images,Server_Room_Logs,Vendor_Downloads}
 
 # 2. Knowledge Base (Standardizing the "No Microsoft" Environment)
 cat << 'EOF' > $HOME_EVE/Knowledge_Base/ACME_Standard_Desktop.md
