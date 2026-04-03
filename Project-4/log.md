@@ -1290,3 +1290,105 @@ EOF
 
 ```
 
+```bash
+sudo tee /usr/local/bin/generate_logs.sh > /dev/null << 'SCRIPT'
+#!/bin/bash
+# Generates realistic auth.log and apache access.log entries
+# Creates legitimate traffic before attack window, attack traffic during,
+# and normal traffic after - producing the gap artifact correctly
+
+AUTH=/var/log/auth.log
+ACCESS=/var/log/apache2/access.log
+ATTACK_DATE="Apr  1"
+YEAR="2026"
+
+# ── Legitimate pre-attack auth entries (Apr 1, 00:00 - 03:28) ──────────────
+cat >> $AUTH << EOF
+$ATTACK_DATE 00:14:32 acmecorp-internal sshd[1823]: Accepted publickey for mitchmarcus from 192.168.56.103 port 51204 ssh2
+$ATTACK_DATE 00:14:32 acmecorp-internal sshd[1823]: pam_unix(sshd:session): session opened for user mitchmarcus by (uid=0)
+$ATTACK_DATE 00:47:11 acmecorp-internal sshd[1823]: pam_unix(sshd:session): session closed for user mitchmarcus
+$ATTACK_DATE 01:03:44 acmecorp-internal cron[995]: pam_unix(cron:session): session opened for user root by (uid=0)
+$ATTACK_DATE 01:03:44 acmecorp-internal cron[995]: pam_unix(cron:session): session closed for user root
+$ATTACK_DATE 02:03:44 acmecorp-internal cron[1021]: pam_unix(cron:session): session opened for user root by (uid=0)
+$ATTACK_DATE 02:03:44 acmecorp-internal cron[1021]: pam_unix(cron:session): session closed for user root
+$ATTACK_DATE 02:14:05 acmecorp-internal sshd[2201]: Failed password for invalid user admin from 10.0.2.55 port 44392 ssh2
+$ATTACK_DATE 02:14:09 acmecorp-internal sshd[2201]: Failed password for invalid user admin from 10.0.2.55 port 44392 ssh2
+$ATTACK_DATE 02:14:13 acmecorp-internal sshd[2201]: Connection closed by invalid user admin 10.0.2.55 port 44392 [preauth]
+$ATTACK_DATE 03:03:44 acmecorp-internal cron[1103]: pam_unix(cron:session): session opened for user root by (uid=0)
+$ATTACK_DATE 03:03:44 acmecorp-internal cron[1103]: pam_unix(cron:session): session closed for user root
+$ATTACK_DATE 03:28:17 acmecorp-internal sshd[2891]: Received disconnect from 10.0.2.55 port 44401: 11: Bye Bye
+EOF
+
+# ── GAP: 03:31 - 07:44 (attack window - NO entries) ───────────────────────
+
+# ── Post-attack entries resume at 07:44 ───────────────────────────────────
+cat >> $AUTH << EOF
+$ATTACK_DATE 07:44:02 acmecorp-internal cron[1847]: pam_unix(cron:session): session opened for user root by (uid=0)
+$ATTACK_DATE 07:44:02 acmecorp-internal cron[1847]: pam_unix(cron:session): session closed for user root
+$ATTACK_DATE 08:03:44 acmecorp-internal cron[1901]: pam_unix(cron:session): session opened for user root by (uid=0)
+$ATTACK_DATE 08:03:44 acmecorp-internal cron[1901]: pam_unix(cron:session): session closed for user root
+$ATTACK_DATE 08:31:19 acmecorp-internal sshd[3201]: Accepted publickey for alicebrown from 192.168.56.103 port 52301 ssh2
+$ATTACK_DATE 08:31:19 acmecorp-internal sshd[3201]: pam_unix(sshd:session): session opened for user alicebrown by (uid=0)
+$ATTACK_DATE 09:02:44 acmecorp-internal sshd[3201]: pam_unix(sshd:session): session closed for user alicebrown
+$ATTACK_DATE 09:03:44 acmecorp-internal cron[2001]: pam_unix(cron:session): session opened for user root by (uid=0)
+$ATTACK_DATE 09:03:44 acmecorp-internal cron[2001]: pam_unix(cron:session): session closed for user root
+$ATTACK_DATE 09:17:33 acmecorp-internal sudo: alicebrown : TTY=pts/0 ; PWD=/home/alicebrown ; USER=root ; COMMAND=/usr/bin/systemctl status apache2
+$ATTACK_DATE 09:44:21 acmecorp-internal sshd[3401]: Accepted publickey for fongling from 192.168.56.103 port 53102 ssh2
+$ATTACK_DATE 09:44:21 acmecorp-internal sshd[3401]: pam_unix(sshd:session): session opened for user fongling by (uid=0)
+$ATTACK_DATE 10:12:08 acmecorp-internal sshd[3401]: pam_unix(sshd:session): session closed for user fongling
+EOF
+
+# ── Apache access.log - normal traffic before attack ──────────────────────
+cat >> $ACCESS << EOF
+192.168.56.103 - - [01/Apr/2026:00:22:14 +0000] "GET / HTTP/1.1" 200 4821 "-" "Mozilla/5.0"
+192.168.56.103 - - [01/Apr/2026:00:22:15 +0000] "GET /assets/css/main.css HTTP/1.1" 200 2341 "-" "Mozilla/5.0"
+192.168.56.103 - - [01/Apr/2026:01:15:03 +0000] "GET / HTTP/1.1" 200 4821 "-" "Mozilla/5.0"
+192.168.56.103 - - [01/Apr/2026:02:44:19 +0000] "GET /admin/login.php HTTP/1.1" 200 1893 "-" "Mozilla/5.0"
+192.168.56.103 - - [01/Apr/2026:02:44:31 +0000] "POST /admin/login.php HTTP/1.1" 302 0 "-" "Mozilla/5.0"
+EOF
+
+# ── Apache - attack traffic (03:31 - 03:58) ───────────────────────────────
+cat >> $ACCESS << EOF
+10.0.2.55 - - [01/Apr/2026:03:31:02 +0000] "GET / HTTP/1.1" 200 4821 "-" "sqlmap/1.7.8"
+10.0.2.55 - - [01/Apr/2026:03:32:17 +0000] "GET /admin/login.php HTTP/1.1" 200 1893 "-" "Mozilla/5.0"
+10.0.2.55 - - [01/Apr/2026:03:33:04 +0000] "POST /admin/login.php HTTP/1.1" 302 0 "-" "Mozilla/5.0" "username=admin'--+-&password=x"
+10.0.2.55 - - [01/Apr/2026:03:33:05 +0000] "GET /admin/dashboard.php HTTP/1.1" 200 8842 "-" "Mozilla/5.0"
+10.0.2.55 - - [01/Apr/2026:03:34:41 +0000] "GET /admin/dashboard.php?export=1 HTTP/1.1" 200 9103 "-" "Mozilla/5.0"
+10.0.2.55 - - [01/Apr/2026:03:35:02 +0000] "GET /backups/acme_backup.tar.gz.enc HTTP/1.1" 200 5432 "-" "curl/7.88.1"
+10.0.2.55 - - [01/Apr/2026:03:41:18 +0000] "GET /uploads/ HTTP/1.1" 403 512 "-" "Mozilla/5.0"
+10.0.2.55 - - [01/Apr/2026:03:47:33 +0000] "GET /uploads/cmd.php?cmd=id HTTP/1.1" 200 38 "-" "curl/7.88.1"
+10.0.2.55 - - [01/Apr/2026:03:47:51 +0000] "GET /uploads/cmd.php?cmd=whoami HTTP/1.1" 200 33 "-" "curl/7.88.1"
+10.0.2.55 - - [01/Apr/2026:03:48:03 +0000] "GET /uploads/cmd.php?cmd=cat+/etc/passwd HTTP/1.1" 200 2841 "-" "curl/7.88.1"
+10.0.2.55 - - [01/Apr/2026:03:55:12 +0000] "GET /uploads/cmd.php?cmd=uname+-a HTTP/1.1" 200 89 "-" "curl/7.88.1"
+EOF
+
+# ── Apache - normal traffic resumes ───────────────────────────────────────
+cat >> $ACCESS << EOF
+192.168.56.103 - - [01/Apr/2026:08:14:22 +0000] "GET / HTTP/1.1" 200 4821 "-" "Mozilla/5.0"
+192.168.56.103 - - [01/Apr/2026:09:03:11 +0000] "GET / HTTP/1.1" 200 4821 "-" "Mozilla/5.0"
+192.168.56.103 - - [01/Apr/2026:09:03:14 +0000] "GET /admin/login.php HTTP/1.1" 200 1893 "-" "Mozilla/5.0"
+192.168.56.103 - - [01/Apr/2026:10:22:05 +0000] "GET / HTTP/1.1" 200 4821 "-" "Mozilla/5.0"
+EOF
+
+chmod 640 $AUTH $ACCESS
+chown root:adm $AUTH
+chown root:adm $ACCESS
+
+echo "Log population complete."
+echo ""
+echo "auth.log entries:"
+wc -l $AUTH
+echo ""
+echo "Apache access.log entries:"
+wc -l $ACCESS
+echo ""
+echo "Gap verification - nothing between 03:28 and 07:44 in auth.log:"
+grep "Apr  1" $AUTH | awk -F'[: ]' '{print $4}' | sort | uniq
+SCRIPT
+
+sudo chmod +x /usr/local/bin/generate_logs.sh
+sudo bash /usr/local/bin/generate_logs.sh
+```
+
+
+
