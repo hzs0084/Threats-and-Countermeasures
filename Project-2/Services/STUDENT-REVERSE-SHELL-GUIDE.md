@@ -185,17 +185,17 @@ export TERM=xterm
 
 ## Common Mistakes
 
-❌ **Wrong:** Using VM's IP (192.168.56.21)
-✅ **Correct:** Using Kali's IP (192.168.56.10)
+**Common Issues:** Using VM's IP (192.168.56.21)
+**Fix:** Using Kali's IP (192.168.56.10)
 
-❌ **Wrong:** Listener on different port than shell
-✅ **Correct:** Both use same port (e.g., 4444)
+**Common Issues:** Listener on different port than shell
+**Fix:** Both use same port (e.g., 4444)
 
-❌ **Wrong:** Triggering shell before starting listener
-✅ **Correct:** Start listener first, then trigger shell
+**Common Issues:** Triggering shell before starting listener
+**Fix:** Start listener first, then trigger shell
 
-❌ **Wrong:** Using Windows line endings in shell script
-✅ **Correct:** Use Unix line endings (LF, not CRLF)
+**Common Issues:** Using Windows line endings in shell script
+**Fix:** Use Unix line endings (LF, not CRLF)
 
 ---
 
