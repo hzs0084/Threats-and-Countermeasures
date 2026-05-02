@@ -239,9 +239,8 @@ sudo apache2ctl configtest
 sudo systemctl reload apache2
 ```
 
-```bash
+## Endpoint with IDOR Vuln
 
-```
 
 ```bash
 sudo tee /opt/acme-api/app.py > /dev/null << 'EOF'
@@ -392,6 +391,9 @@ if __name__ == '__main__':
 EOF
 ```
 
+## An endpoint that users SQL
+
+```bash
 sudo tee /opt/acme-api/app.py > /dev/null << 'EOF'
 from flask import Flask, jsonify, request
 import MySQLdb
@@ -517,7 +519,9 @@ def admin_export():
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=False)
 EOF
+```
 
+## ACME Home Webpage
 
 ```php
 <?php include 'config.php'; ?>
@@ -1290,6 +1294,8 @@ EOF
 
 ```
 
+## Generates logs to make it look like someone broke in and messed with the logs
+
 ```bash
 sudo tee /usr/local/bin/generate_logs.sh > /dev/null << 'SCRIPT'
 #!/bin/bash
@@ -1385,7 +1391,11 @@ echo ""
 echo "Gap verification - nothing between 03:28 and 07:44 in auth.log:"
 grep "Apr  1" $AUTH | awk -F'[: ]' '{print $4}' | sort | uniq
 SCRIPT
+```
 
+## Running and testing the bash script
+
+```bash
 sudo chmod +x /usr/local/bin/generate_logs.sh
 sudo bash /usr/local/bin/generate_logs.sh
 ```
